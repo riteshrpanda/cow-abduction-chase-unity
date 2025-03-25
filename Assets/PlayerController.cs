@@ -9,13 +9,17 @@ public class PlayerController : MonoBehaviour
     private int jumpCount;
     public int maxJumps = 2;
     private bool isRolling;
-
     private Animator animator;
+
+    public Transform groundCheck; // Empty GameObject placed at player's feet
+    public float groundCheckRadius = 0.2f; // Small radius to check ground
+    public LayerMask groundLayer; // Layer assigned to ground tiles
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        jumpCount = maxJumps;
     }
 
     void Update()
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         Roll();
+        CheckGrounded();
     }
 
     void Move()
@@ -74,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             jumpCount = maxJumps; // Reset jump count on ground
+            Debug.Log("Landed on Ground!");
         }
     }
 
@@ -84,12 +90,22 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
     void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.CompareTag("Obstacle"))
     {
-        Debug.Log("Player Hit an Obstacle!");
-        // Implement damage, game over, or knockback
+        if (other.CompareTag("Obstacle"))
+        {
+            Debug.Log("Player Hit an Obstacle!");
+            // Implement damage, game over, or knockback
+        }
     }
-}
+
+    void CheckGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (isGrounded)
+        {
+            jumpCount = maxJumps;
+        }
+    }
 }

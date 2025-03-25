@@ -1,48 +1,59 @@
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class GroundSpawner : MonoBehaviour
 {
-    public GameObject groundPrefab; // Assign the ground prefab in the Inspector
-    public Transform player; // Assign the player to track movement
-    public int maxGroundTiles = 500; // Limit the number of active tiles
-    public float groundLength = 1f; // Adjust based on prefab length
-
-    private Queue<GameObject> groundTiles = new Queue<GameObject>();
-    private float nextSpawnZ = 0f;
+    public Tilemap groundTilemap; // Reference to the Tilemap
+    public TileBase groundTile;   // The tile to place dynamically
+    public Transform player;      // Reference to the player
+    
+    public Vector3Int startPosition = new Vector3Int(0, 0, 0); // Initial tile position
+    public int tileSpawnDistance = 10; // How far ahead to spawn tiles
+    public int tileSpawnBehind = 5; // How far behind to spawn tiles
+    
+    private Vector3Int lastTilePosition;
 
     void Start()
     {
-        // Spawn initial ground tiles
-        for (int i = 0; i < maxGroundTiles; i++)
-        {
-            SpawnGround();
-        }
+        // Get the starting position below the player
+        startPosition = groundTilemap.WorldToCell(player.position);
+        startPosition.y -= 1; // Ensure tiles spawn beneath the player
+        lastTilePosition = startPosition;
+
+        SpawnInitialTiles();
     }
 
     void Update()
     {
-        // Check if player moved far enough to spawn new ground
-        if (player.position.x > nextSpawnZ - (maxGroundTiles * groundLength))
+        if (player.position.x > lastTilePosition.x - tileSpawnDistance)
         {
-            SpawnGround();
-            RemoveOldGround();
+            SpawnTile();
         }
     }
 
-    void SpawnGround()
+    void SpawnInitialTiles()
     {
-        Vector3 spawnPosition = new Vector3(nextSpawnZ, player.position.y , 0); // Adjusted Y to align with player
-        GameObject newGround = Instantiate(groundPrefab, spawnPosition, Quaternion.identity);
-        groundTiles.Enqueue(newGround);
-        nextSpawnZ += groundLength;
+        // Spawn tiles behind the player
+        Vector3Int tempPosition = startPosition;
+        for (int i = 0; i < tileSpawnBehind; i++)
+        {
+            tempPosition.x -= 1;
+            groundTilemap.SetTile(tempPosition, groundTile);
+        }
+
+        // Spawn tiles under the player
+        groundTilemap.SetTile(startPosition, groundTile);
+
+        // Spawn tiles ahead of the player
+        for (int i = 0; i < tileSpawnDistance; i++)
+        {
+            SpawnTile();
+        }
     }
 
-    void RemoveOldGround()
+    void SpawnTile()
     {
-        if (groundTiles.Count > maxGroundTiles)
-        {
-            Destroy(groundTiles.Dequeue());
-        }
+        lastTilePosition.x += 1; // Move horizontally to the right
+        groundTilemap.SetTile(new Vector3Int(lastTilePosition.x, startPosition.y, 0), groundTile); // Place tile at correct height
     }
 }
