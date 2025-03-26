@@ -22,6 +22,7 @@ public class GameOverManager : MonoBehaviour
         if (gameOverCanvas != null)
         {
             gameOverCanvas.SetActive(true);
+            Time.timeScale = 0f; // Pause game on game over
             Debug.Log("Game Over screen displayed.");
         }
         else
@@ -33,7 +34,7 @@ public class GameOverManager : MonoBehaviour
     public void RestartGame()
     {
         Debug.Log("Restarting Game...");
-        Time.timeScale = 1f; // Resume game
+        Time.timeScale = 1f; // Ensure time resumes
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
