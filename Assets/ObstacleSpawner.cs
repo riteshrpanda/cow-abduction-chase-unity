@@ -2,40 +2,43 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public GameObject[] obstacles;
-    public float spawnRate = 5f;
-    private float timer = 0f;
+    public GameObject trapSpikePrefab;  // Air spike
+    public GameObject spikePrefab;      // Ground spike
+    public GameObject spearPrefab;      // Surprise spear
+    public Transform player;            // Player reference
 
-    void Update()
+    public float spawnDistance = 10f;
+    public float groundLevel = -3f;
+    public float jumpHeight = 2.5f;
+    public float midAirHeight = 4f;
+    public float spawnRate = 2f;
+
+    private GameObject[] obstacles;
+
+    void Start()
     {
-        timer += Time.deltaTime;
-        if (timer >= spawnRate)
-        {
-            SpawnObstacle();
-            timer = 0f;
-        }
+        obstacles = new GameObject[] { trapSpikePrefab, spikePrefab, spearPrefab };
+        InvokeRepeating(nameof(SpawnObstacle), 1f, spawnRate);
     }
 
     void SpawnObstacle()
-{
-    if (obstacles.Length == 0)
     {
-        Debug.LogError("No obstacles assigned in ObstacleSpawner!");
-        return;
+        GameObject obstacleToSpawn = obstacles[Random.Range(0, obstacles.Length)];
+        Vector3 spawnPosition = Vector3.zero;
+
+        if (obstacleToSpawn == trapSpikePrefab)
+        {
+            spawnPosition = new Vector3(player.position.x + spawnDistance, jumpHeight, 0f);
+        }
+        else if (obstacleToSpawn == spikePrefab)
+        {
+            spawnPosition = new Vector3(player.position.x + spawnDistance, groundLevel, 0f);
+        }
+        else if (obstacleToSpawn == spearPrefab)
+        {
+            spawnPosition = new Vector3(player.position.x + spawnDistance, groundLevel+1.8f, 0f); // Spear at ground level
+        }
+
+        Instantiate(obstacleToSpawn, spawnPosition, Quaternion.identity);
     }
-
-    int randIndex = Random.Range(0, obstacles.Length);
-    
-    // Get current spawn position
-    Vector3 spawnPos = transform.position;
-    
-    // Randomize the X position within a range
-    float randomX = Random.Range(-10f, 10f);  // Adjust range based on level size
-    spawnPos.x += randomX;
-
-    GameObject spawnedObstacle = Instantiate(obstacles[randIndex], spawnPos, Quaternion.identity);
-    
-    Debug.Log($"Spawned: {spawnedObstacle.name} at {spawnPos}");
-}
-
 }
