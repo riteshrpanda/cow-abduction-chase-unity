@@ -36,7 +36,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
         else if (obstacleToSpawn == spearPrefab)
         {
-            spawnPosition = new Vector3(player.position.x + spawnDistance, groundLevel+1.8f, 0f); // Spear at ground level
+            spawnPosition = new Vector3(player.position.x + spawnDistance, groundLevel+0.5f, 0f); // Spear at ground level
         }
 
         Instantiate(obstacleToSpawn, spawnPosition, Quaternion.identity);

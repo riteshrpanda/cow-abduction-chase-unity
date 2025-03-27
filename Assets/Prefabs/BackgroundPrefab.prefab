@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8552568528814936043}
   - component: {fileID: 2860521568436437572}
-  - component: {fileID: 477867078284522235}
   - component: {fileID: 6406600937142044064}
   m_Layer: 6
   m_Name: Bush Background
@@ -75,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 6e0fcddb85b3bfd4a9a26b3143f5d12a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89,20 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &477867078284522235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390396136598423488}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56e857a42fc1a64bace8ab9d0e90441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 1
-  speedMultiplier: 0.05
 --- !u!114 &6406600937142044064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &981952895008637226
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +112,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5585960929820505067}
   - component: {fileID: 4487620160402972017}
-  - component: {fileID: 891706646426121779}
   - component: {fileID: 8575913452330700957}
   m_Layer: 6
   m_Name: Woods Second
@@ -192,8 +176,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 066d770ac5ce1af4ca576794cfe6704e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -206,20 +190,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &891706646426121779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981952895008637226}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56e857a42fc1a64bace8ab9d0e90441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 1
-  speedMultiplier: 0.3
 --- !u!114 &8575913452330700957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &3409590635292379184
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +214,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5353514075086348385}
   - component: {fileID: 5477490341011778953}
-  - component: {fileID: 2484664601000128780}
   - component: {fileID: 246122459471678803}
   m_Layer: 6
   m_Name: Woods Fourth
@@ -309,8 +278,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0e8e998796118084d8b33b5085a3560b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -323,20 +292,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2484664601000128780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409590635292379184}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56e857a42fc1a64bace8ab9d0e90441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 5
-  speedMultiplier: 0.5
 --- !u!114 &246122459471678803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &3850877674060129457
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,8 +395,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: f44fd67bd73d546469d7c317fcd1d5ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -467,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &4264072029430532754
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +432,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397215690954241492}
-  - component: {fileID: 3260798201318492112}
   - component: {fileID: 1531778899662837986}
   - component: {fileID: 921698498208705896}
   m_Layer: 6
@@ -502,20 +456,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 562108828874558996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3260798201318492112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4264072029430532754}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56e857a42fc1a64bace8ab9d0e90441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 1
-  speedMultiplier: 0.2
 --- !u!212 &1531778899662837986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -557,8 +497,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 4a0bf6774f40eeb419adfda6b54d5c1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -584,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &6912765475941705215
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3453291485067672151}
   - component: {fileID: 1585834853054358087}
-  - component: {fileID: 6622641013522077057}
   - component: {fileID: 6615087968931229009}
   m_Layer: 6
   m_Name: Vines Second
@@ -660,8 +599,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: c3909c99bf845a24db9a162d677b6398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -674,20 +613,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6622641013522077057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6912765475941705215}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56e857a42fc1a64bace8ab9d0e90441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 1
-  speedMultiplier: 0.1
 --- !u!114 &6615087968931229009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &8454916809004065405
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +636,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5178754098490785716}
-  - component: {fileID: 5268066406336398440}
   - component: {fileID: 53663489060073620}
   - component: {fileID: 2642206415358208645}
   m_Layer: 6
@@ -736,20 +660,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 562108828874558996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5268066406336398440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454916809004065405}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56e857a42fc1a64bace8ab9d0e90441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 1
-  speedMultiplier: 0.2
 --- !u!212 &53663489060073620
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -791,8 +701,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -750266419
+  m_SortingLayer: 1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 45367da5e1f745b4daacb977484a3704, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -818,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  backgroundPrefab: {fileID: 0}
+  backgrounds: []
 --- !u!1 &8477397731754988419
 GameObject:
   m_ObjectHideFlags: 0
