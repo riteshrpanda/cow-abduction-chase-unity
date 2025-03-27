@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     public Transform groundCheck; // Empty GameObject placed at player's feet
-    public float groundCheckRadius = 0.2f; // Small radius to check ground
+    public float groundCheckRadius = 0.1f; // Small radius to check ground
     public LayerMask groundLayer; // Layer assigned to ground tiles
 
     void Start()
@@ -47,14 +47,18 @@ public class PlayerController : MonoBehaviour
     }
 
     void Jump()
+{
+    if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            jumpCount--;
-            animator.SetTrigger("jump");
-        }
+        Debug.Log("Jumping! Jump Count Before: " + jumpCount);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        jumpCount--;
+        animator.SetTrigger("jump");
+        Debug.Log("Jump Count After: " + jumpCount);
     }
+}
+
+
 
     void Roll()
     {
@@ -73,24 +77,6 @@ public class PlayerController : MonoBehaviour
         moveSpeed /= 1.5f; // Reset speed after rolling
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            jumpCount = maxJumps; // Reset jump count on ground
-            Debug.Log("Landed on Ground!");
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Obstacle"))
@@ -101,11 +87,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void CheckGrounded()
+{
+    bool wasGrounded = isGrounded;  
+    isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+    if (isGrounded && !wasGrounded) 
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        if (isGrounded)
-        {
-            jumpCount = maxJumps;
-        }
+        jumpCount = maxJumps;  
+        Debug.Log("Landed! Jump count reset.");
     }
+}
 }

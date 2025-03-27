@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -3804453786874968470
     second: Spike_B_0
+  - first:
+      213: -2321815495975119944
+    second: Spike_B_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -105,8 +108,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 9
-        width: 320
-        height: 17
+        width: 62
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +120,28 @@ TextureImporter:
       bones: []
       spriteID: a668dec007dd33bc0800000000000000
       internalID: -3804453786874968470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_B_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 9
+        width: 257
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b3d760ab1147cfd0800000000000000
+      internalID: -2321815495975119944
       vertices: []
       indices: 
       edges: []
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Spike_B_0: -3804453786874968470
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
