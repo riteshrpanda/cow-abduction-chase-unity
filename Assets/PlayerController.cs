@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI; // Required for UI components
+using UnityEngine.SceneManagement; // Required for scene reloading
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,16 +12,28 @@ public class PlayerController : MonoBehaviour
     public int maxJumps = 2;
     private bool isRolling;
     private Animator animator;
+    public int maxHealth = 3;
+    private int currentHealth;
+    public float knockbackForceX = 5f; 
+    public float knockbackForceY = 3f; 
+    public float knockbackDuration = 0.3f; 
+    private bool isKnockedBack = false;
+    public GameObject gameOverCanvas; 
+    public Button restartButton; 
 
-    public Transform groundCheck; // Empty GameObject placed at player's feet
-    public float groundCheckRadius = 0.1f; // Small radius to check ground
-    public LayerMask groundLayer; // Layer assigned to ground tiles
+    public Transform groundCheck; 
+    public float groundCheckRadius = 0.1f; 
+    public LayerMask groundLayer; 
 
     void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         jumpCount = maxJumps;
+
+        if (gameOverCanvas != null)
+            gameOverCanvas.SetActive(false); // Hide Game Over UI initially
     }
 
     void Update()
@@ -31,20 +45,23 @@ public class PlayerController : MonoBehaviour
     }
 
     void Move()
-    {
-        float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+{
+    if (isKnockedBack) return; // Stop movement while knocked back
 
-        if (moveInput != 0)
-        {
-            transform.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
-            animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            animator.SetBool("isRunning", false);
-        }
+    float moveInput = Input.GetAxis("Horizontal");
+    rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+    if (moveInput != 0)
+    {
+        transform.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
+        animator.SetBool("isRunning", true);
     }
+    else
+    {
+        animator.SetBool("isRunning", false);
+    }
+}
+
 
     void Jump()
 {
@@ -52,12 +69,11 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Jumping! Jump Count Before: " + jumpCount);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        jumpCount--;
+        jumpCount--; // Always decrease jumpCount on jump
         animator.SetTrigger("jump");
         Debug.Log("Jump Count After: " + jumpCount);
     }
 }
-
 
 
     void Roll()
@@ -81,9 +97,31 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log("Player Hit an Obstacle!");
-            // Implement damage, game over, or knockback
+            TakeDamage();
         }
+    }
+
+    public void TakeDamage()
+{
+    currentHealth--;
+    Debug.Log("Player Hit! Health: " + currentHealth);
+    
+    Vector2 knockbackDirection = new Vector2(-Mathf.Sign(transform.localScale.x) * knockbackForceX, knockbackForceY);
+    rb.linearVelocity = Vector2.zero;  
+    rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
+
+    isKnockedBack = true;
+    Invoke(nameof(ResetKnockback), knockbackDuration);
+
+    if (currentHealth <= 0)
+    {
+        GameOver();
+    }
+}
+
+    void ResetKnockback()
+    {
+        isKnockedBack = false;
     }
 
     void CheckGrounded()
@@ -93,8 +131,30 @@ public class PlayerController : MonoBehaviour
 
     if (isGrounded && !wasGrounded) 
     {
-        jumpCount = maxJumps;  
+        jumpCount = maxJumps;  // Reset jump count when touching ground
         Debug.Log("Landed! Jump count reset.");
     }
 }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over! Player Died");
+
+        if (gameOverCanvas != null)
+            gameOverCanvas.SetActive(true); // Show Game Over UI
+
+        if (restartButton != null)
+        {
+            restartButton.onClick.RemoveAllListeners(); // Ensure no duplicate listeners
+            restartButton.onClick.AddListener(RestartGame); // Link restart button
+        }
+
+        Time.timeScale = 0; // Pause game
+    }
+
+    void RestartGame()
+    {
+        Time.timeScale = 1; // Unpause game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Restart level
+    }
 }
