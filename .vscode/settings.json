@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "cow-abduction-chase-unity.sln"
+    "dotnet.defaultSolution": "cow-abduction-chase-unity.sln",
+    "git.ignoreLimitWarning": true
 }

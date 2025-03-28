@@ -11,9 +11,9 @@ public class ObstacleSpawner : MonoBehaviour
     public float groundLevel = -4f;
     public float jumpHeight = 1f;
     public float midAirHeight = 4f;
-    public float spawnRate = 0.8f;  
+    public float spawnRate = 0.7f;  
     private float minSpawnRate = 0.001f;  
-    private float difficultyIncreaseRate = 0.001f;  
+    private float difficultyIncreaseRate = 0.005f;  
     private float timeElapsed = 0f;
 
     private GameObject[] obstacles;

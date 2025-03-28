@@ -28,7 +28,7 @@ public class GolemAI : MonoBehaviour
             gameOverCanvas.SetActive(false);
 
         if (player != null)
-            playerAnimator = player.GetComponent<Animator>(); // Get player's Animator
+            playerAnimator = player.GetComponent<Animator>(); 
     }
 
     void Update()
@@ -57,10 +57,10 @@ public class GolemAI : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
 
             animator.SetBool("isWalking", false);
-            animator.SetTrigger("Attack");
+            animator.SetBool("isAttacking", true); 
 
             if (playerAnimator != null)
-                playerAnimator.SetTrigger("death"); // Trigger player death animation
+                playerAnimator.SetTrigger("death"); 
 
             Invoke("GameOver", gameOverDelay);
         }
