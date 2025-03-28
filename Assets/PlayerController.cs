@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public float knockbackDuration = 0.3f; 
     private bool isKnockedBack = false;
     public GameObject gameOverCanvas; 
-    public Button restartButton; 
+    public Button restartButton;   
 
     public Transform groundCheck; 
     public float groundCheckRadius = 0.1f; 
@@ -61,8 +61,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", false);
     }
 }
-
-
     void Jump()
 {
     if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
@@ -77,46 +75,40 @@ public class PlayerController : MonoBehaviour
 
 
     void Roll()
+{
+    if (Input.GetKeyDown(KeyCode.LeftShift) && !isRolling) // Removed isGrounded
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && !isRolling)
-        {
-            isRolling = true;
-            animator.SetTrigger("roll");
-            moveSpeed *= 1.5f; // Increase speed while rolling
-            Invoke("EndRoll", 0.5f); // End roll after 0.5 seconds
-        }
+        isRolling = true;
+        animator.SetTrigger("roll");
+        moveSpeed *= 1.5f; 
+        Invoke("EndRoll", 0.5f);
     }
-
+}
     void EndRoll()
     {
         isRolling = false;
-        moveSpeed /= 1.5f; // Reset speed after rolling
+        moveSpeed /= 1.5f; 
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Obstacle"))
-        {
-            TakeDamage();
-        }
-    }
-
-    public void TakeDamage()
 {
-    currentHealth--;
-    Debug.Log("Player Hit! Health: " + currentHealth);
-    
+    if (other.CompareTag("Obstacle"))
+    {
+        animator.SetTrigger("hurt"); 
+        ApplyKnockback(); 
+    }
+}
+
+    public void ApplyKnockback()
+{
+    Debug.Log("Player Knocked Back!");
+
     Vector2 knockbackDirection = new Vector2(-Mathf.Sign(transform.localScale.x) * knockbackForceX, knockbackForceY);
     rb.linearVelocity = Vector2.zero;  
     rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
 
     isKnockedBack = true;
     Invoke(nameof(ResetKnockback), knockbackDuration);
-
-    if (currentHealth <= 0)
-    {
-        GameOver();
-    }
 }
 
     void ResetKnockback()
@@ -131,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     if (isGrounded && !wasGrounded) 
     {
-        jumpCount = maxJumps;  // Reset jump count when touching ground
+        jumpCount = maxJumps;
         Debug.Log("Landed! Jump count reset.");
     }
 }

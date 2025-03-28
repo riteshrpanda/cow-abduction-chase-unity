@@ -1510,7 +1510,8 @@ Transform:
   m_LocalPosition: {x: -9.37, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1605620656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &911717642
@@ -1740,7 +1741,7 @@ Transform:
   m_GameObject: {fileID: 1088987465}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.82, y: -0.92, z: 0}
+  m_LocalPosition: {x: -18.33, y: -1.08, z: 0}
   m_LocalScale: {x: 15.657001, y: 15.657001, z: 7.528724}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1854,12 +1855,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 911717641}
-  speed: 1
+  speed: 5
   attackRange: 1.5
   gameOverCanvas: {fileID: 444424953}
   restartButton: {fileID: 1226214506}
   gameOverManager: {fileID: 1303772529}
-  gameOverDelay: 2
+  gameOverDelay: 1
+  speedIncreaseRate: 0.02
 --- !u!1001 &1099160718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1970,8 +1972,8 @@ MonoBehaviour:
   groundTile: {fileID: 11400000, guid: 3a2a73ee7d3ba0c4ebd81cde7c19fb83, type: 2}
   player: {fileID: 911717641}
   startPosition: {x: 0, y: 0, z: 0}
-  tileSpawnDistance: 10
-  tileSpawnBehind: 5
+  tileSpawnDistance: 50
+  tileSpawnBehind: 50
 --- !u!212 &1197145612
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2362,7 +2364,7 @@ MonoBehaviour:
   groundLevel: -4
   jumpHeight: 1
   midAirHeight: 4
-  spawnRate: 1
+  spawnRate: 0.8
 --- !u!4 &1567314522
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,12 +2404,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605620655}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.53, y: -3.89, z: 0.013254055}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.15999985, y: 0.00999999, z: 0.013254055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 911717641}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061281584
 GameObject:
@@ -2628,7 +2630,6 @@ SceneRoots:
   - {fileID: 314353782}
   - {fileID: 1197145613}
   - {fileID: 911717641}
-  - {fileID: 1605620656}
   - {fileID: 1303772530}
   - {fileID: 444424957}
   - {fileID: 884062230}

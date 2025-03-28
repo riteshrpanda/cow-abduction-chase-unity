@@ -8,8 +8,8 @@ public class GroundSpawner : MonoBehaviour
     public Transform player;      // Reference to the player
     
     public Vector3Int startPosition = new Vector3Int(0, 0, 0); // Initial tile position
-    public int tileSpawnDistance = 10; // How far ahead to spawn tiles
-    public int tileSpawnBehind = 5; // How far behind to spawn tiles
+    public int tileSpawnDistance = 50; // How far ahead to spawn tiles
+    public int tileSpawnBehind = 50; // How far behind to spawn tiles
     
     private Vector3Int lastTilePosition;
 

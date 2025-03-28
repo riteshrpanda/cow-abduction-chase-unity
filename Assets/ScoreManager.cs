@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI scoreText; // Assign in Inspector
     private int score = 0;
     private bool isGameOver = false;
+    private float scoreFloat = 0f;
 
     void Start()
     {
@@ -16,13 +17,14 @@ public class ScoreManager : MonoBehaviour
     }
 
     void Update()
+{
+    if (!isGameOver)
     {
-        if (!isGameOver)
-        {
-            score += Mathf.FloorToInt(Time.deltaTime * 1000);
-            UpdateScoreText();
-        }
+        scoreFloat += Time.deltaTime * (10 + (score / 500f)); 
+        score = Mathf.FloorToInt(scoreFloat); 
+        UpdateScoreText();
     }
+}
 
     void UpdateScoreText()
     {
